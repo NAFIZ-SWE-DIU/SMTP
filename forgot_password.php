@@ -66,14 +66,53 @@
 	</form>
 </div>
 
-<?php include_once("footer.php");?>
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span id="popup-message"></span>
+        <div class="popup-buttons">
+            <button id="close-button">Close</button>
+        </div>
+    </div>
+</div>
 
-</body>
-</html>	
+<script>
+    // Function to show the popup with a message
+    function showPopup(message) {
+        var popup = document.getElementById("popup");
+        var popupMessage = document.getElementById("popup-message");
+        var closeButton = document.getElementById("close-button");
 
+        popupMessage.textContent = message;
+        popup.style.display = "block";
 
+        closeButton.addEventListener("click", function () {
+            popup.style.display = "none";
+        });
+    }
+</script>
 
+<style>
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
 
+.popup-content {
+    text-align: center;
+}
+
+.popup-buttons {
+    margin-top: 10px;
+}
+</style>
 
 <?php
 // Include database configuration file
@@ -158,15 +197,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         
         if ($mail->send()) {
             // Password sent successfully
-            echo "Your password has been sent to your email address.";
+            echo '<script>showPopup("Your password has been sent to your email address.");</script>';
         } else {
             // Error sending email
-            echo "There was an error sending your password. Please try again later.";
+            echo '<script>showPopup("There was an error sending your password. Please try again later.");</script>';
         }
         
     } else {
         // User not found in the database
-        echo "We couldn't find a user with that email address.";
+        echo '<script>showPopup("We could not find a user with that email address.");</script>';
     }
 }
 ?>
+
+
+
+<?php include_once("footer.php");?>
+
+</body>
+</html>	
+
+
+
+
+
