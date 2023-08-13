@@ -109,8 +109,24 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $email_body = ob_get_clean();
         
         // Plain text version of the email body
-        $plain_text_message = "Your ShosurBari Password\n\nYour password is: $password\n\nYour Email is: $email\n\nLogin your account: https://www.shoshurbari.rf.gd/login.php\n\nNote: Please remember to keep your passwords and usernames secure. Do not share them with anyone.\n\n[fa fa-facebook]:https://www.facebook.com/ShoshurBari.bd\nhttps://www.yourwebsite.com\nhttps://www.facebook.com\nhttps://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\n\n(c) 2022-23 ShosurBari.com | All Rights Reserved";
-
+        // $plain_text_message = "Your ShosurBari Password\n\nA request has been made to retrieve the password for logging into your account.\n\nYour password is: $password\n\nYour Email is: $email\n\nLogin your account: https://www.shoshurbari.rf.gd/login.php\n\nNote: Please remember to keep your passwords and usernames secure. Do not share them with anyone.\n\n[fa fa-facebook]:https://www.facebook.com/ShoshurBari.bd\nhttps://www.yourwebsite.com\nhttps://www.facebook.com\nhttps://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\n\n(c) 2022-23 ShosurBari.com | All Rights Reserved";
+            $plain_text_message = "
+            Your ShosurBari Password
+            
+            A request has been made to retrieve the password for logging into your account.
+            Your password is: $password
+            Your email is: $email
+            Login to your account: https://www.shoshurbari.rf.gd/login.php
+            Note: Please remember to keep your passwords and usernames secure. Do not share them with anyone.
+            
+            (c) 2022-23 ShosurBari.com | All Rights Reserved
+            
+            Connect with us:
+            - Website: https://www.shoshurbari.com
+            - Facebook: https://www.facebook.com/ShoshurBari.bd
+            - Email: support@shoshurbari.com
+            - YouTube: https://www.youtube.com/c/ShoshurBari
+            ";
         // Headers
         $headers = "From: nafizulislam.swe@gmail.com\r\n";
         $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
