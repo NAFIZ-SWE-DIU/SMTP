@@ -1,0 +1,11 @@
+Your ShosurBari Password
+
+Your password is: <?php echo $password; ?>
+Your email is: <?php echo $email; ?>
+Login to your account: https://www.shoshurbari.rf.gd/login.php
+Note: Please remember to keep your passwords secure. Do not share them with anyone.
+
+[fa fa-facebook]: https://www.facebook.com/ShoshurBari.bd
+[&#xf082;]: https://www.twitter.com/ShosurBari
+
+(c) 2022-23 ShosurBari.com | All Rights Reserved
