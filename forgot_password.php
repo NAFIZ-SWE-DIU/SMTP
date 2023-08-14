@@ -76,13 +76,13 @@
 </div>
 
 <script>
-    // Function to show the popup with a message
+   // Function to show the popup with a message
     function showPopup(message) {
         var popup = document.getElementById("popup");
         var popupMessage = document.getElementById("popup-message");
         var closeButton = document.getElementById("close-button");
 
-        popupMessage.textContent = message;
+        popupMessage.innerHTML = message; // Use innerHTML to interpret HTML tags
         popup.style.display = "block";
 
         closeButton.addEventListener("click", function () {
@@ -98,8 +98,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
+    background: linear-gradient(180deg,#00bbff 0%,rgb(246 246 246) 100%);
+    border: 1px solid #ccc;
+    border-radius: 5px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1;
@@ -107,10 +108,22 @@
 
 .popup-content {
     text-align: center;
+    color: #000;
 }
 
 .popup-buttons {
     margin-top: 10px;
+}
+
+#close-button{
+    background: linear-gradient(#06b6d4, #0ea5e9);
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+#close-button:hover {
+    background: linear-gradient(#0ea5e9, #06b6d4);
+    color: white;
 }
 </style>
 
@@ -196,18 +209,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $mail->AltBody = $plain_text_message; // Plain text version of the email
         
         if ($mail->send()) {
-            // Password sent successfully
-            echo '<script>showPopup("Your password has been sent to your email address.");</script>';
+        // Password sent successfully
+        echo '<script>showPopup("<span style=\"font-size: 22px; color: white; margin-bottom: 15px\">Check Your Email</span><br>Your password has been sent to your email address.");</script>';
         } else {
             // Error sending email
-            echo '<script>showPopup("There was an error sending your password. Please try again later.");</script>';
+            echo '<script>showPopup("<span style=\"font-size: 22px; color: white; margin-bottom: 15px\"> Error Oops!</span><br>There was an error sending your password. Please try again later.");</script>';
         }
-        
-    } else {
-        // User not found in the database
-        echo '<script>showPopup("We could not find a user with that email address.");</script>';
+        } else {
+            // User not found in the database
+            echo '<script>showPopup("<span style=\"font-size: 22px; color: white; margin-bottom: 15px\"> User Not Found</span><br>We could not find a user with that email address.");</script>';
+        }
     }
-}
 ?>
 
 
